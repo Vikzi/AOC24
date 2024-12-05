@@ -59,14 +59,38 @@ class DayFive
     public function solveB(): void
     {
         $data = $this->getData();
+        $rules = $data['rules'];
 
         $sumOfMiddleNumbers = 0;
         foreach ($data['updates'] as $update) {
-            if (!$this->checkUpdate($update, $data['rules'])) {
-                $fixedUpdate = $this->fixUpdate($update, $data['rules']);
-                $sumOfMiddleNumbers += $fixedUpdate[(count($update) - 1) / 2];
+            if ($this->checkUpdate($update, $rules)) {
+                continue;
             }
+
+            usort($update, function ($a, $b) use($rules) {
+                foreach ($rules as $rule) {
+                    if (!in_array($a, $rule) || !in_array($b, $rule)) {
+                        continue;
+                    }
+
+                    if ($a == $rule[0]) {
+                        return 1;
+                    }
+                    return -1;
+                }
+            });
+
+            echo json_encode($update);
+            $sumOfMiddleNumbers += $update[(count($update) - 1) / 2];
         }
+
+        // $sumOfMiddleNumbers = 0;
+        // foreach ($data['updates'] as $update) {
+        //     if (!$this->checkUpdate($update, $data['rules'])) {
+        //         $fixedUpdate = $this->fixUpdate($update, $data['rules']);
+        //         $sumOfMiddleNumbers += $fixedUpdate[(count($update) - 1) / 2];
+        //     }
+        // }
 
         echo $sumOfMiddleNumbers;
     }
