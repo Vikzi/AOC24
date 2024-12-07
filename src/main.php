@@ -1,8 +1,8 @@
 <?php
 
-require_once 'DayFive.php';
+require_once 'DaySeven.php';
 
-$solver = new DayFive();
+$solver = new DaySeven();
 $solver->solveA();
 echo "\n";
 $solver->solveB();
