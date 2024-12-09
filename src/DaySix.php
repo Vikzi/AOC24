@@ -131,7 +131,6 @@ class DaySix
 
         $visitedCoords = [];
         while (true) {
-            // echo "STEP $posX, $posY, $dir |||";
             if (in_array([$posX, $posY, $dir], $visitedCoords)) {
                 return true;
             } else {
@@ -139,12 +138,10 @@ class DaySix
             }
 
             if ($this->guardIsExiting($posX, $posY, $dir, $data)) {
-                // echo "EXITING |||\n";
                 break;
             }
 
             list($posX, $posY, $dir) = $this->move($posX, $posY, $dir, $data);
-            // echo "NEW COORD $posX, $posY, $dir\n";
         }
 
         return false;
