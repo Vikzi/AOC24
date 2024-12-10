@@ -1,8 +1,8 @@
 <?php
 
-require_once 'DayNine.php';
+require_once 'DayTen.php';
 
-$solver = new DayNine();
+$solver = new DayTen();
 $aStart = floor(microtime(true) * 1000);
 $solver->solveA();
 $aEnd = $milliseconds = floor(microtime(true) * 1000);
